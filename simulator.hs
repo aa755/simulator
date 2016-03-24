@@ -3193,15 +3193,17 @@ animateSpaceReq carGeo moves0 extraSpace framesPerMove =
         in
         sconcat frames}}}
 
-{-- extra space towards the (left, bottom) and  (right,top) --}
+{-- extra space towards the (left, bottom) and  (right,top). 
+units : left/right: 1= length of the car,
+ top/bottom: 1= half the width of the car --}
 extra :: BoundingRectangle (Data.Ratio.Ratio Prelude.Integer)
 extra = Build_Line2D (MkCart2D 0.2 0.1) (MkCart2D 0.2 1)
 
 {-- Each pair corresponds to a move. The first component is the fixed turn curvature during the move.
 1 denotes the maximum curvature for the car. So this value should be between 1 (max left-steered) and -1 (max right-steered).
 0 means steered perfectly straight.
-The second component denotes the signed distance covered (integral of linVel), as a fraction of the width of the car. 
-So 1 means covering a distance equal to the width of the car  --}
+The second component denotes the signed distance covered (integral of linVel). 
+So 1 means covering a distance equal to half the width of the car  --}
 moves :: ([])
          ((,) (Data.Ratio.Ratio Prelude.Integer)
          (Data.Ratio.Ratio Prelude.Integer))
